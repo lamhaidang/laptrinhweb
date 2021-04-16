@@ -1,0 +1,143 @@
+<html>
+	<head>
+		<title> Form Đăng Ký </title>
+		<meta charset="utf-8">
+		<style type="text/css">
+			h1{
+			 color  :red;
+			}
+			table{
+			padding: 10px;
+			background-color: #D3D3D3;
+			
+		}
+		</style>
+	</head>
+	<body>
+		<h1>Đăng Ký Tài Khoản Mới</h1>
+		<h2> Lâm Hãi Đăng B1706460</h2>
+		<p>Vui lòng điền đầy đủ thông tin để đăng ký tài khoản mới</p>
+		<form action="Buoi3_xuly_DangKy.php" method="post" enctype="multipart/form-data" onsubmit = "return baoloi()">
+		  <table>
+			<tr>
+				<td>Tên Đăng Nhập </td>
+				<td></td>
+				<td><input type="text" name="ten" id="t"></td>
+			</tr>
+			<tr><td colspan ="3"><p align ="center" style = "color : red" id ="blt"></p></td></tr>
+			<tr>
+				<td>Mật Khẩu </td>
+				<td></td>
+				<td><input type="password" name="password1" id="mk1"></td>
+			</tr>
+			<tr><td colspan ="3"><p align ="center" style = "color : red" id ="blmk1"></p></td></tr>
+			<tr>
+				<td>Gõ Lại Mật Khẩu </td>
+				<td></td>
+				<td><input type="password" name="password2" id="mk2"></td>
+			</tr>
+			<tr><td colspan ="3"><p align ="center" style = "color : red" id ="blmk2"></p></td></tr>
+			<tr>
+				<td>Hình đại diện </td>
+				<td></td>
+				<td><input type="file" name="hinhanh" accept="image/*" id="hinh" /></td>
+			</tr>
+			<tr><td colspan ="3"><p align ="center" style = "color : red" id ="blhinh"></p></td></tr>
+			<tr>
+				<td>Giới Tính</td>
+				<td></td>
+				<td><input type="radio" name="gender" value="Nam" checked>
+				Nam
+				<input type="radio" name="gender" value="Nữ" checked>
+				Nữ
+				<input type="radio" name="gender" value="Khác" checked>
+				Khác</td>
+			</tr>
+			<tr>
+				<td>Nghề Nghiệp</td>
+				<td></td>
+				<td><select name="dropdown">
+				<option value="Hoc Sinh" selected>Hoc Sinh</option>
+				<option value="Sinh Viên">Sinh Viên</option>
+				<option value="Giáo Viên">Giáo Viên</option>
+				<option value="khác">Khác</option></td>
+				</select>
+			</tr>
+			<tr>
+				<td>Sở thích</td>
+				<td></td>
+				<td><input type="checkbox" name="sothich[]" value="Thể Thao" >Thể Thao
+					<input type="checkbox" name="sothich[]" value="Du Lịch" > Du Lịch
+					<input type="checkbox" name="sothich[]" value="Âm Nhạc" > Âm Nhạc<br>
+					<input type="checkbox" name="sothich[]" value="Thời Trang"> Thời Trang</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" name="submit" value ="Đăng ký"></td>
+				<td><input type="reset" name="reset" value ="Làm lại"></td>
+			</tr>
+			</table>
+		</form>
+	<script>
+		function baoloi(){
+			var t = document.getElementById("t").value;
+			var mk1 = document.getElementById("mk1").value;
+			var mk2 = document.getElementById("mk2").value;
+			var hinh = document.getElementById("hinh").value;
+			//document.write(t);
+			//alert(t);
+			
+			var bieuthucchinhquy =/^[A-Za-z][A-Za-z0-9]{5,14}$/;
+			ok =true;
+			
+			
+			if(t==""){
+				document.getElementById("blt").innerHTML = "tên đăng nhập không được để trống";
+				ok=false;
+			} else{
+				if (bieuthucchinhquy.test(t)){
+					document.getElementById("blt").innerHTML = "";
+				} else{
+					document.getElementById("blt").innerHTML = "tên đăng nhập không khop";
+					ok=false;
+				}
+			}
+			
+			var bieuthucmatkhau = /^[A-Za-z0-9]{6,15}$/;
+			if(mk1==""){
+				document.getElementById("blmk1").innerHTML= "mật khẩu không được để trống";
+				ok=false;
+			} else{
+				if (!bieuthucmatkhau.test(mk1)){
+					document.getElementById("blmk1").innerHTML = "mật khẩu không hợp lệ";
+					ok=false;
+					
+				} else{
+					document.getElementById("blmk1").innerHTML = "";
+				}
+			}
+			
+			if(mk2==""){
+				document.getElementById("blmk2").innerHTML = "mời nhập lại mật khẩu";
+				ok=false;
+			} else{
+			if(mk2!=mk1){
+				document.getElementById("blmk2").innerHTML = "mật khẩu khong giong voi mat khau da nhap";
+				ok=false;
+			} else{
+				document.getElementById("blmk2").innerHTML = "";
+			}
+			}
+			
+			if(hinh==""){
+				document.getElementById("blhinh").innerHTML = "hình ảnh không được để trống";
+				ok=false;
+			} else{
+				document.getElementById("blhinh").innerHTML = "";
+			}
+			return ok;
+		}
+	</script>
+
+	</body>
+</html>

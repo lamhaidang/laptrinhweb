@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head> 
+	<title> Lập trình web (CT428) </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+
+</head>	
+<body>
+<div id="wrap">
+	<div id="title">
+		<h1>Bài 2 - Buổi 4</h1>
+	</div> <!--end div title-->
+	<div id="menu">
+		<!-- chèn menu của sinh viên vào-->
+	</div> <!--end div menu-->
+	<div id="content">
+		<!--Nội dung trang web-->
+		<h1>Slide show</h1>
+	
+		<form>
+			<img id="laptopImg" src="img/hp.jpg" height="300" width="300" />
+			<br/>
+			<input type="button" name="previous" value="Previous" onclick="changeSlide(-1)">
+			<input type="button" name="next" value="Next" onclick="changeSlide(1)">
+			<br/>
+			<select id="laptopSel" onchange="chooseSlide(value)">
+				<option value="0">HP</option>
+				<option value="1">Dell</option>
+				<option value="2">Acer</option>
+				<option value="3">Asus</option>
+			</select> 
+		</form>
+		<p>Yêu cầu:<br/>
+		Có 4 hình ảnh về máy tính đính kèm, mặc định hiển thị hình máy HP.<br/>
+			<ul>
+				<li>Khi người dùng nhấn Next thì hiển thị hình tiếp theo (theo thứ tự Hp -> Dell -> Acer -> Asus).</li>
+				<li>Khi người dùng nhấp Previous thì hiển thị hình trước đó.</li>
+				<li>Cả nút Next và Previous đều hiển thị vòng tròn (nếu đang xem hình HP mà nhấn Previous thì sẽ chuyển sang hình Asus).</li>
+				<li>Người dùng có thể chọn xem một hình nào đó từ danh sách bên dưới nút Previous và Next.</li>
+				<li>Khi người dùng thay đổi hình bằng cách nhấn Previous hoặc Next thì tên hiển thị bên dưới cũng thay đổi theo.</li>
+			</ul>	
+		</p>
+	</div> <!--end div content-->
+	<div id="footer">
+		<p>Họ tên SV: <br/> Email: </p>
+	</div> <!--end div footer-->
+</div> <!--end div wrap-->
+<script>
+	var IMGGE = [];
+	IMGGE[0] = "img/hp.jpg";
+	IMGGE[1] = "img/dell.jpg";
+	IMGGE[2] = "img/acer.jpg";
+	IMGGE[3] = "img/asus.jpg";
+	var so = 0;
+	function changeSlide(n){
+		so = so +n;
+		if(so < 0) so = 3;
+		if(so > 3) so = 0;
+		var theImg = document.getElementById("laptopImg");
+		theImg.setAttribute("src",IMGGE[so]);
+		document.getElementById("laptopSel").selectedIndex = so;
+		
+}
+	function chooseSlide(n){
+		var theImg = document.getElementById("laptopImg");
+		theImg.setAttribute("src",IMGGE[n]);
+}
+</script>
+</body>
+</html>
